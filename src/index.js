@@ -24,13 +24,25 @@ const data = {
       id: 'node4',
       label: '地球',
       x: 650,
-      y: 470,
+      y: 460,
+      size: 100,
+      color: 'grey'
     },
     {
       id: 'node5',
       label: '水星',
       x: 650,
-      y: 260,
+      y: 250,
+      size: 100,
+      color: 'grey'
+    },
+    {
+      id: 'node6',
+      label: '金星',
+      x: 650,
+      y: 355,
+      size: 100,
+      color: 'grey'
     }
   ],
   edges: [
@@ -49,14 +61,19 @@ const data = {
     {
       source: 'node2',
       target: 'node5',
+      label: 'nearest'
+    },
+    {
+      source: 'node2',
+      target: 'node6',
     },
   ],
 };
 
 const graph = new G6.Graph({
   container: 'mountNode',
-  width: 2000,
-  height: 2000,
+  width: 800,
+  height: 600,
   defaultNode: {
     type: 'circle',
     size: [200],
@@ -73,13 +90,18 @@ const graph = new G6.Graph({
     },
   },
   defaultEdge: {
+    labelCfg: {
+      autoRotate: false,
+    },
     style: {
       stroke: '#e2e2e2',
     },
   },
+  fitView: true,
+  fitViewPadding: [20, 40, 50, 20],
 });
 
-/*const main = async () => {
+const main = async () => {
   const response = await fetch(
     'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json',
   );
@@ -88,7 +110,7 @@ const graph = new G6.Graph({
   graph.data(remoteData); // 加载远程数据
   graph.render(); // 渲染
 };
-main();*/
+//main();
 
 graph.data(data);
 graph.render();
